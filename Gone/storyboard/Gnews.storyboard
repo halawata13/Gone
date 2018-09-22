@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bg8-Uc-Vs6">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Gnews List View Controller-->
+        <scene sceneID="G7H-hn-Q03">
+            <objects>
+                <viewController id="JxP-hp-AMi" customClass="GnewsListViewController" customModule="Gone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0oz-Nf-OvM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4vr-qQ-V2I" customClass="ArticleListTableView" customModule="Gone" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ye0-IS-UmK" customClass="MessageView" customModule="Gone" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ye0-IS-UmK" firstAttribute="top" secondItem="Llq-Ii-Ml9" secondAttribute="top" id="3Ve-Z7-EYj"/>
+                            <constraint firstItem="4vr-qQ-V2I" firstAttribute="trailing" secondItem="Llq-Ii-Ml9" secondAttribute="trailing" id="D3P-DT-0ch"/>
+                            <constraint firstItem="Llq-Ii-Ml9" firstAttribute="bottom" secondItem="Ye0-IS-UmK" secondAttribute="bottom" id="OB5-a7-QFR"/>
+                            <constraint firstItem="4vr-qQ-V2I" firstAttribute="leading" secondItem="Llq-Ii-Ml9" secondAttribute="leading" id="TtH-qU-qy7"/>
+                            <constraint firstItem="4vr-qQ-V2I" firstAttribute="bottom" secondItem="Llq-Ii-Ml9" secondAttribute="bottom" id="nX9-PV-tYP"/>
+                            <constraint firstItem="4vr-qQ-V2I" firstAttribute="top" secondItem="Llq-Ii-Ml9" secondAttribute="top" id="ogZ-5x-ZRq"/>
+                            <constraint firstItem="Ye0-IS-UmK" firstAttribute="leading" secondItem="Llq-Ii-Ml9" secondAttribute="leading" id="svO-Ro-sOb"/>
+                            <constraint firstItem="Ye0-IS-UmK" firstAttribute="trailing" secondItem="Llq-Ii-Ml9" secondAttribute="trailing" id="szS-pU-RPW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Llq-Ii-Ml9"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="p1a-dB-Xr7"/>
+                    <connections>
+                        <outlet property="articleListTableView" destination="4vr-qQ-V2I" id="ODu-j4-bdm"/>
+                        <outlet property="messageView" destination="Ye0-IS-UmK" id="p5d-aT-bHt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eks-v1-nGy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="340" y="187.55622188905548"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MCf-Ec-7pW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bg8-Uc-Vs6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="T6N-U7-4qU">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JxP-hp-AMi" kind="relationship" relationship="rootViewController" id="qwA-PU-ZuZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="atu-cO-VL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-599.20000000000005" y="187.55622188905548"/>
+        </scene>
+    </scenes>
+</document>
