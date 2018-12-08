@@ -3,6 +3,7 @@ import UIKit
 
 class SideMenuManagementTableViewDataSource: NSObject, UITableViewDataSource {
     var data = SideMenuService.getEditableKeywords()
+    var reservingDeleteKeywords = [String]()
 
     func addKeyword(keyword: String) {
         data.append(keyword)
@@ -13,15 +14,15 @@ class SideMenuManagementTableViewDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuManagementTableViewCell", for: indexPath)
-
         if indexPath.row == data.count {
-            cell.textLabel?.text = "追加する"
-        } else {
-            cell.textLabel?.text = data[indexPath.row]
-        }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AdditionSideMenuManagementTableViewCell", for: indexPath)
+            return cell
 
-        return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuManagementTableViewCell", for: indexPath)
+            cell.textLabel?.text = data[indexPath.row]
+            return cell
+        }
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -51,6 +52,7 @@ class SideMenuManagementTableViewDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         // 削除
         if editingStyle == .delete {
+            reservingDeleteKeywords.append(data[indexPath.row])
             data.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

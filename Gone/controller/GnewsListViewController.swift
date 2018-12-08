@@ -14,6 +14,8 @@ class GnewsListViewController: ArticleListViewController, ArticleList {
 
         articleListTableView.delegate = self
 
+        view.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(onLongPressedTableViewCell)))
+
         setup()
         initArticle()
     }
@@ -22,12 +24,48 @@ class GnewsListViewController: ArticleListViewController, ArticleList {
         super.viewWillAppear(animated)
 
         slideMenuController()?.delegate = self
+
+        if articleService.isNecessaryReloading() {
+            requestArticleBySelectedKeyword()
+        }
+    }
+
+    @objc func onLongPressedTableViewCell(_ recognizer: UILongPressGestureRecognizer) {
+        if recognizer.state != .began {
+            return
+        }
+
+        let point = recognizer.location(in: articleListTableView)
+
+        guard let indexPath = articleListTableView.indexPathForRow(at: point) else {
+            return
+        }
+
+        let article = dataSource.articles[indexPath.row]
+        let alertController = UIAlertController(title: article.host, message: nil, preferredStyle: .alert)
+
+        let muteAction = UIAlertAction(title: "このサイトの記事をミュートする", style: .default) { [weak self] (action) in
+            MuteService.setMute(host: article.host)
+            self?.requestArticleBySelectedKeyword()
+        }
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+
+        alertController.addAction(muteAction)
+        alertController.addAction(cancelAction)
+
+        present(alertController, animated: true)
     }
 }
 
 extension GnewsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        openArticle(urlString: dataSource.articles[indexPath.row].url)
+        let cell = tableView.cellForRow(at: indexPath) as? ArticleListTableViewCell
+        cell?.setRead(isRead: true)
+
+        let keyword = SideMenuService.getSelectedKeyword() ?? SideMenuService.fixedKeywords[0]
+        articleService.markAsRead(keyword: keyword, url: dataSource.articles[indexPath.row].url)
+
+        openArticle(url: dataSource.articles[indexPath.row].url)
     }
 }
 

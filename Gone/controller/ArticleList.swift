@@ -14,10 +14,6 @@ protocol ArticleList: class {
 
 extension ArticleList where Self: UIViewController {
     func setup() {
-        navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
-        navigationController?.navigationBar.barTintColor = articleService.getThemeColor()
-
         SideMenuService.setSelectedKeyword(articleService.getDefaultTitle())
     }
 
@@ -44,12 +40,12 @@ extension ArticleList where Self: UIViewController {
             case .success:
                 guard let data = response.data,
                       let articles = self?.articleService.parse(data: data) else {
-                    self?.messageView.showMessage("記事が見つかりませんでした")
+                    self?.messageView.show(message: "記事が見つかりませんでした")
                     return
                 }
 
                 if articles.count == 0 {
-                    self?.messageView.showMessage("記事が見つかりませんでした")
+                    self?.messageView.show(message: "記事が見つかりませんでした")
                     return
                 }
 
@@ -58,7 +54,7 @@ extension ArticleList where Self: UIViewController {
 
             case .failure(let error):
                 print(error.localizedDescription)
-                self?.messageView.showMessage("記事の読み込みに失敗しました")
+                self?.messageView.show(message: "記事の読み込みに失敗しました")
             }
         }
     }
@@ -76,12 +72,7 @@ extension ArticleList where Self: UIViewController {
         articleListTableView.reloadData()
     }
 
-    func openArticle(urlString: String) {
-        guard let url = URL(string: urlString) else {
-            print("Invalid url string")
-            return
-        }
-
+    func openArticle(url: URL) {
         let safariViewController = SFSafariViewController(url: url)
         present(safariViewController, animated: true)
     }

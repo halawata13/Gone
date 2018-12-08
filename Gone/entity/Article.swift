@@ -1,7 +1,9 @@
 import Foundation
 
 protocol Article {
-    var title: String { get set }
-    var url: String { get set }
-    var pubDate: String { get set }
+    var title: String { get }
+    var url: URL { get }
+    var host: String { get }
+    var pubDate: String { get }
+    var isRead: Bool { get set }
 }

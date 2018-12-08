@@ -12,10 +12,17 @@ class GnewsService: ArticleService {
 
         if let items = xml.root["channel"]["item"].all {
             items.forEach { (item) in
+                guard let url = URL(string: item["link"].string),
+                      let host = url.host else {
+                    return
+                }
+
                 let article = GnewsArticle(
                     title: item["title"].string,
-                    url: item["link"].string,
-                    pubDate: parseDateString(dateString: item["pubDate"].string) ?? item["pubDate"].string
+                    url: url,
+                    host: host,
+                    pubDate: parseDateString(dateString: item["pubDate"].string) ?? item["pubDate"].string,
+                    isRead: false
                 )
 
                 articles.append(article)
@@ -25,6 +32,11 @@ class GnewsService: ArticleService {
         articles.sort {
             return $0.pubDate > $1.pubDate
         }
+
+        articles = MuteService.filter(articles: articles)
+
+        let keyword = SideMenuService.getSelectedKeyword() ?? SideMenuService.fixedKeywords[0]
+        articles = checkMarkingAsRead(keyword: keyword, articles: articles)
 
         return articles
     }

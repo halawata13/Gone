@@ -14,9 +14,7 @@ class ArticleListTableViewDataSource: NSObject, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ArticleListTableViewCell.className, for: indexPath) as! ArticleListTableViewCell
-        cell.titleLabel.text = articles[indexPath.row].title
-        cell.pubDateLabel.text = articles[indexPath.row].pubDate
-        cell.urlLabel.text = articles[indexPath.row].url
+        cell.setArticle(article: articles[indexPath.row])
 
         return cell
     }

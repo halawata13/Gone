@@ -3,7 +3,7 @@ import UIKit
 
 class MessageView: UIView {
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var messageView: UITextView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override init(frame: CGRect){
@@ -27,15 +27,15 @@ class MessageView: UIView {
         contentView.superview?.isHidden = false
         loadingIndicator.isHidden = false
         loadingIndicator.startAnimating()
-        messageLabel.isHidden = true
+        messageView.isHidden = true
     }
 
-    func showMessage(_ message: String) {
+    func show(message: String) {
         contentView.superview?.isHidden = false
         loadingIndicator.isHidden = true
         loadingIndicator.stopAnimating()
-        messageLabel.isHidden = false
-        messageLabel.text = message
+        messageView.isHidden = false
+        messageView.text = message
     }
 
     func hide() {
