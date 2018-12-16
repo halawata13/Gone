@@ -34,6 +34,10 @@ extension ConfigViewController: UITableViewDelegate {
         case .mute:
             let viewController = UIStoryboard(name: "MuteManagement", bundle: nil).instantiateInitialViewController()!
             navigationController?.pushViewController(viewController, animated: true)
+
+        case .dateRange:
+            let viewController = UIStoryboard(name: "DateRangeManagement", bundle: nil).instantiateInitialViewController()!
+            navigationController?.pushViewController(viewController, animated: true)
         }
     }
 }

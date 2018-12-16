@@ -74,6 +74,8 @@ extension ArticleList where Self: UIViewController {
 
     func openArticle(url: URL) {
         let safariViewController = SFSafariViewController(url: url)
+        safariViewController.preferredBarTintColor = articleService.getThemeColor()
+        safariViewController.preferredControlTintColor = articleService.getTintColor()
         present(safariViewController, animated: true)
     }
 }

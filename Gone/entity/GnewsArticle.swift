@@ -7,6 +7,7 @@ struct GnewsArticle: Article {
     let title: String
     let url: URL
     let host: String
-    let pubDate: String
+    let pubDate: Date
+    let pubDateString: String
     var isRead: Bool = false
 }

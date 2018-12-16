@@ -31,13 +31,8 @@ class GnewsListViewController: ArticleListViewController, ArticleList {
     }
 
     @objc func onLongPressedTableViewCell(_ recognizer: UILongPressGestureRecognizer) {
-        if recognizer.state != .began {
-            return
-        }
-
-        let point = recognizer.location(in: articleListTableView)
-
-        guard let indexPath = articleListTableView.indexPathForRow(at: point) else {
+        guard recognizer.state == .began,
+              let indexPath = articleListTableView.indexPathForRow(at: recognizer.location(in: articleListTableView)) else {
             return
         }
 
@@ -72,6 +67,9 @@ extension GnewsListViewController: UITableViewDelegate {
 extension GnewsListViewController: SlideMenuControllerDelegate {
     public func leftWillClose() {
         requestArticleBySelectedKeyword()
-        articleListTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+
+        if dataSource.articles.count > 0 {
+            articleListTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
     }
 }

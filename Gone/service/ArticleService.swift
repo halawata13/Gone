@@ -12,7 +12,11 @@ protocol ArticleService {
 
     func getThemeColor() -> UIColor
 
-    func parseDateString(dateString: String) -> String?
+    func getTintColor() -> UIColor
+
+    func parseDateString(dateString: String) -> Date?
+
+    func parseDate(date: Date) -> String
 
     func requireReloading()
 

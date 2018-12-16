@@ -7,7 +7,7 @@ class ArticleListTableViewCell: UITableViewCell {
 
     func setArticle(article: Article) {
         titleLabel.text = article.title
-        pubDateLabel.text = article.pubDate
+        pubDateLabel.text = article.pubDateString
         urlLabel.text = article.url.absoluteString
 
         setRead(isRead: article.isRead)

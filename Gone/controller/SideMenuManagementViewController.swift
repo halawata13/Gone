@@ -9,7 +9,7 @@ class SideMenuManagementViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "サイドメニュー編集"
+        navigationItem.title = ConfigService.Item.menu.rawValue
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "キャンセル", style: .plain, target: self, action: #selector(onTapCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(onTapDone))
@@ -58,5 +58,9 @@ class SideMenuManagementViewController: UIViewController {
 extension SideMenuManagementViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         return proposedDestinationIndexPath
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
 }

@@ -11,9 +11,7 @@ class ArticleListViewController: UIViewController {
         view.addGestureRecognizer(leftEdgePan)
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(onTapMenuButton))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.darkGray
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "config"), style: .plain, target: self, action: #selector(onTapConfigButton))
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGray
     }
 
     @objc func onLeftEdgePanned(_ recognizer: UIScreenEdgePanGestureRecognizer) {

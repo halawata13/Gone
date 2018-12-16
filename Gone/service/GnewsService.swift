@@ -13,7 +13,8 @@ class GnewsService: ArticleService {
         if let items = xml.root["channel"]["item"].all {
             items.forEach { (item) in
                 guard let url = URL(string: item["link"].string),
-                      let host = url.host else {
+                      let host = url.host,
+                      let pubDate = parseDateString(dateString: item["pubDate"].string) else {
                     return
                 }
 
@@ -21,7 +22,8 @@ class GnewsService: ArticleService {
                     title: item["title"].string,
                     url: url,
                     host: host,
-                    pubDate: parseDateString(dateString: item["pubDate"].string) ?? item["pubDate"].string,
+                    pubDate: pubDate,
+                    pubDateString: parseDate(date: pubDate),
                     isRead: false
                 )
 
@@ -29,11 +31,13 @@ class GnewsService: ArticleService {
             }
         }
 
-        articles.sort {
-            return $0.pubDate > $1.pubDate
-        }
+        articles = DateRangeService.filter(articles: articles)
 
         articles = MuteService.filter(articles: articles)
+
+        articles.sort {
+            return $0.pubDateString > $1.pubDateString
+        }
 
         let keyword = SideMenuService.getSelectedKeyword() ?? SideMenuService.fixedKeywords[0]
         articles = checkMarkingAsRead(keyword: keyword, articles: articles)
@@ -54,21 +58,25 @@ class GnewsService: ArticleService {
     }
 
     func getThemeColor() -> UIColor {
-        return UIColor(hue: 6 / 360, saturation: 0.81, brightness: 0.94, alpha: 1)
+        return UIColor(hue: 220 / 360, saturation: 0.36, brightness: 0.37, alpha: 1)
     }
 
-    func parseDateString(dateString: String) -> String? {
-        let inFormatter = DateFormatter()
-        inFormatter.locale = Locale(identifier: "en_US_POSIX")
-        inFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
+    func getTintColor() -> UIColor {
+        return UIColor.white
+    }
 
-        guard let date = inFormatter.date(from: dateString) else {
-            return nil
-        }
+    func parseDateString(dateString: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
 
-        let outFormatter = DateFormatter()
-        outFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        return formatter.date(from: dateString)
+    }
 
-        return outFormatter.string(from: date)
+    func parseDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+
+        return formatter.string(from: date)
     }
 }

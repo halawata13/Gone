@@ -10,12 +10,13 @@ class MuteManagementViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "ミュート設定"
+        navigationItem.title = ConfigService.Item.mute.rawValue
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "キャンセル", style: .plain, target: self, action: #selector(onTapCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(onTapDone))
 
         muteManagementTableView.dataSource = muteManagementTableViewDataSource
+        muteManagementTableView.delegate = self
         muteManagementTableView.setEditing(true, animated: false)
 
         if muteManagementTableViewDataSource.data.count == 0 {
@@ -31,6 +32,14 @@ class MuteManagementViewController: UIViewController {
 
     @objc func onTapDone(_ sender: UIBarButtonItem) {
         MuteService.setMutes(hosts: muteManagementTableViewDataSource.data)
+        GnewsService().requireReloading()
+
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension MuteManagementViewController: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
 }
