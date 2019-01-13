@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 class MuteManagementViewController: UIViewController {
-    let muteManagementTableViewDataSource = MuteManagementTableViewDataSource()
+    let dataSource = MuteManagementTableViewDataSource()
 
     @IBOutlet weak var muteManagementTableView: UITableView!
     @IBOutlet weak var messageView: MessageView!
@@ -12,34 +12,33 @@ class MuteManagementViewController: UIViewController {
 
         navigationItem.title = ConfigService.Item.mute.rawValue
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "キャンセル", style: .plain, target: self, action: #selector(onTapCancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(onTapDone))
-
-        muteManagementTableView.dataSource = muteManagementTableViewDataSource
+        muteManagementTableView.dataSource = dataSource
         muteManagementTableView.delegate = self
         muteManagementTableView.setEditing(true, animated: false)
 
-        if muteManagementTableViewDataSource.data.count == 0 {
-            messageView.show(message: "ミュートしているサイトはありません。\n記事を長押ししてそのサイトをミュートにすることができます。")
+        navigationController?.delegate = self
+
+        // ミュートしているサイトがなければメッセージを出す
+        if dataSource.data.count == 0 {
+            messageView.show(message: "ミュートしているサイトはありません。\n記事を長押しして記事のサイトをミュートにすることができます。", image: UIImage(named: "mute"))
         } else {
             messageView.hide()
         }
     }
-
-    @objc func onTapCancel(_ sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: true)
-    }
-
-    @objc func onTapDone(_ sender: UIBarButtonItem) {
-        MuteService.setMutes(hosts: muteManagementTableViewDataSource.data)
-        GnewsService().requireReloading()
-
-        navigationController?.popViewController(animated: true)
-    }
 }
 
 extension MuteManagementViewController: UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
+    }
+}
+
+extension MuteManagementViewController: UINavigationControllerDelegate {
+    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        // 前画面に戻るときに設定を保存
+        if viewController is ConfigViewController {
+            MuteService.setMutes(hosts: dataSource.data)
+            GnewsService().requireReloading()
+        }
     }
 }

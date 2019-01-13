@@ -3,7 +3,7 @@ import Foundation
 class DateRangeService {
     private static let udDateRange = "udDateRange"
 
-    static let defaultItem = DateRange.m1
+    static let defaultItem = DateRange.h24
 
     static let items = [
         DateRange.h24,
@@ -27,10 +27,16 @@ class DateRangeService {
         case unlimited = "無制限"
     }
 
+    ///
+    /// 記事の取得期間を保存する
+    ///
     static func setDateRange(_ dateRange: DateRange) {
         UserDefaults.standard.set(dateRange.rawValue, forKey: DateRangeService.udDateRange)
     }
 
+    ///
+    /// 記事の取得期間を取得する
+    ///
     static func getDateRange() -> DateRange {
         guard let value = UserDefaults.standard.string(forKey: DateRangeService.udDateRange) else {
             return DateRangeService.defaultItem
@@ -39,7 +45,10 @@ class DateRangeService {
         return DateRange(rawValue: value) ?? DateRangeService.defaultItem
     }
 
-    static func filter<T: Article>(articles: [T]) -> [T] {
+    ///
+    /// 記事の取得期間に基づいて記事をフィルタする
+    ///
+    static func filter(articles: [Article]) -> [Article] {
         let dateRange = DateRangeService.getDateRange()
 
         if dateRange == .unlimited {
@@ -51,6 +60,9 @@ class DateRangeService {
         }
     }
 
+    ///
+    /// 記事の取得期間の秒を返す
+    ///
     private static func getTimeInterval(dateRange: DateRange) -> TimeInterval {
         switch dateRange {
         case .h24:

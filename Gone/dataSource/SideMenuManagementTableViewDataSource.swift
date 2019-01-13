@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 class SideMenuManagementTableViewDataSource: NSObject, UITableViewDataSource {
-    var data = SideMenuService.getEditableKeywords()
+    var data = SideMenuService.getCustomKeywords()
     var reservingDeleteKeywords = [String]()
 
     func addKeyword(keyword: String) {

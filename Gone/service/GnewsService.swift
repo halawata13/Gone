@@ -3,13 +3,17 @@ import UIKit
 import AEXML
 
 class GnewsService: ArticleService {
-    func parse(data: Data) -> [Article]? {
+    ///
+    /// RSSをパースする
+    ///
+    func parse(data: Data, keyword: String) -> [Article]? {
         guard let xml = try? AEXMLDocument(xml: data) else {
             return nil
         }
 
-        var articles = [GnewsArticle]()
+        var articles = [Article]()
 
+        // XMLパース
         if let items = xml.root["channel"]["item"].all {
             items.forEach { (item) in
                 guard let url = URL(string: item["link"].string),
@@ -18,12 +22,14 @@ class GnewsService: ArticleService {
                     return
                 }
 
-                let article = GnewsArticle(
+                let article = Article(
                     title: item["title"].string,
                     url: url,
                     host: host,
                     pubDate: pubDate,
                     pubDateString: parseDate(date: pubDate),
+                    thumbsUrl: URL(string: item["media:content"].attributes["url"] ?? ""),
+                    thumbsImage: nil,
                     isRead: false
                 )
 
@@ -31,52 +37,31 @@ class GnewsService: ArticleService {
             }
         }
 
+        // 日付の取得期間を適用
         articles = DateRangeService.filter(articles: articles)
 
+        // ミュートを適用
         articles = MuteService.filter(articles: articles)
 
+        // 記事の日付順にソート
         articles.sort {
             return $0.pubDateString > $1.pubDateString
         }
 
-        let keyword = SideMenuService.getSelectedKeyword() ?? SideMenuService.fixedKeywords[0]
+        // 既読の記事をマーク
         articles = checkMarkingAsRead(keyword: keyword, articles: articles)
 
         return articles
     }
 
-    func getDefaultTitle() -> String {
-        return ApiUrlService.Gnews.newEntryLabel
-    }
-
-    func getDefaultUrlString() -> String {
-        return ApiUrlService.Gnews.newEntry
-    }
-
-    func getUrlString(keyword: String) -> String? {
-        return ApiUrlService.Gnews.get(for: keyword)
-    }
-
-    func getThemeColor() -> UIColor {
-        return UIColor(hue: 220 / 360, saturation: 0.36, brightness: 0.37, alpha: 1)
-    }
-
-    func getTintColor() -> UIColor {
-        return UIColor.white
-    }
-
+    ///
+    /// XMLの日付文字列を日付に変換
+    ///
     func parseDateString(dateString: String) -> Date? {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
 
         return formatter.date(from: dateString)
-    }
-
-    func parseDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-
-        return formatter.string(from: date)
     }
 }

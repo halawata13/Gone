@@ -1,10 +1,15 @@
-import Foundation
+import UIKit
 
-protocol Article {
-    var title: String { get }
-    var url: URL { get }
-    var host: String { get }
-    var pubDate: Date { get }
-    var pubDateString: String { get }
-    var isRead: Bool { get set }
+///
+/// 記事
+///
+struct Article {
+    let title: String
+    let url: URL
+    let host: String
+    let pubDate: Date
+    let pubDateString: String
+    let thumbsUrl: URL?
+    var thumbsImage: UIImage?
+    var isRead: Bool = false
 }

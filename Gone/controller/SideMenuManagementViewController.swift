@@ -2,34 +2,33 @@ import Foundation
 import UIKit
 
 class SideMenuManagementViewController: UIViewController {
-    let sideMenuManagementTableViewDataSource = SideMenuManagementTableViewDataSource()
+    let dataSource = SideMenuManagementTableViewDataSource()
     
     @IBOutlet weak var sideMenuManagementTableView: UITableView!
-
+    @IBOutlet weak var messageView: MessageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = ConfigService.Item.menu.rawValue
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "キャンセル", style: .plain, target: self, action: #selector(onTapCancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(onTapDone))
-
-        sideMenuManagementTableView.dataSource = sideMenuManagementTableViewDataSource
+        sideMenuManagementTableView.dataSource = dataSource
         sideMenuManagementTableView.delegate = self
         sideMenuManagementTableView.setEditing(true, animated: false)
+
+        navigationController?.delegate = self
+
+        // キーワードがなければメッセージを出す
+        if dataSource.data.count == 0 {
+            messageView.show(message: "登録されているキーワードはありません。\nここで登録したキーワードはサイドメニューに表示されます。", usingOkButton: true, image: UIImage(named: "keyword"))
+        } else {
+            messageView.hide()
+        }
     }
 
-    @objc func onTapCancel(_ sender: UIBarButtonItem) {
-        sideMenuManagementTableViewDataSource.reservingDeleteKeywords = [String]()
-        navigationController?.popViewController(animated: true)
-    }
-
-    @objc func onTapDone(_ sender: UIBarButtonItem) {
-        GnewsService().removeMarkingAsRead(for: sideMenuManagementTableViewDataSource.reservingDeleteKeywords)
-        SideMenuService.setKeywords(sideMenuManagementTableViewDataSource.data)
-        navigationController?.popViewController(animated: true)
-    }
-    
+    ///
+    /// 追加ボタンのタップ
+    ///
     @IBAction func onTapAddition(_ sender: UIButton) {
         let alertController = UIAlertController(title: "キーワード追加", message: "追加するキーワードを入力してください", preferredStyle: .alert)
         alertController.addTextField()
@@ -41,7 +40,7 @@ class SideMenuManagementViewController: UIViewController {
 
             if let text = textField.text,
                !text.isEmpty {
-                self?.sideMenuManagementTableViewDataSource.addKeyword(keyword: text)
+                self?.dataSource.addKeyword(keyword: text)
                 self?.sideMenuManagementTableView.reloadData()
             }
         }
@@ -60,7 +59,17 @@ extension SideMenuManagementViewController: UITableViewDelegate {
         return proposedDestinationIndexPath
     }
 
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
+    }
+}
+
+extension SideMenuManagementViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        // 前画面に戻るときに設定を保存
+        if viewController is ConfigViewController {
+            GnewsService().removeMarkingAsRead(for: dataSource.reservingDeleteKeywords)
+            SideMenuService.setCustomKeywords(dataSource.data)
+        }
     }
 }

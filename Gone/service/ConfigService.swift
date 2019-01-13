@@ -8,8 +8,8 @@ class ConfigService {
     ]
 
     enum Item: String {
-        case menu = "メニュー編集"
-        case mute = "ミュート設定"
+        case menu = "キーワード"
+        case mute = "ミュート"
         case dateRange = "記事の取得期間"
     }
 }

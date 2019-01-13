@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 class DateRangeManagementViewController: UIViewController {
-    let dataRangeManagementTableViewDataSource = DateRangeManagementTableViewDataSource()
+    let dataSource = DateRangeManagementTableViewDataSource()
 
     @IBOutlet weak var dataRangeManagementTableView: UITableView!
 
@@ -11,7 +11,7 @@ class DateRangeManagementViewController: UIViewController {
 
         navigationItem.title = ConfigService.Item.dateRange.rawValue
 
-        dataRangeManagementTableView.dataSource = dataRangeManagementTableViewDataSource
+        dataRangeManagementTableView.dataSource = dataSource
         dataRangeManagementTableView.delegate = self
     }
 
@@ -38,21 +38,31 @@ class DateRangeManagementViewController: UIViewController {
 
 extension DateRangeManagementViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dateRange = dataRangeManagementTableViewDataSource.data[indexPath.row]
+        let dateRange = dataSource.data[indexPath.row]
+
+        // チェックマークをつける
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .checkmark
 
+        // 記事の更新が必要であることを通知
         GnewsService().requireReloading()
 
+        // 設定を保存
         DateRangeService.setDateRange(dateRange)
+
+        // 設定トップ画面の値を更新する
+        if let configViewController = navigationController?.viewControllers.first as? ConfigViewController {
+            configViewController.reloadData()
+        }
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        // チェックマークを外す
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .none
     }
 
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
     }
 }

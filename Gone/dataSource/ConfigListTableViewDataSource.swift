@@ -12,6 +12,15 @@ class ConfigListTableViewDataSource: NSObject, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConfigListTableViewCell", for: indexPath)
         cell.textLabel?.text = data[indexPath.row].rawValue
 
+        switch data[indexPath.row] {
+        case .dateRange:
+            let dateRange = DateRangeService.getDateRange()
+            cell.detailTextLabel?.text = dateRange.rawValue
+
+        default:
+            cell.detailTextLabel?.text = nil
+        }
+
         return cell
     }
 }

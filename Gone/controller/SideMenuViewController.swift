@@ -3,29 +3,35 @@ import UIKit
 import SlideMenuControllerSwift
 
 class SideMenuViewController: UIViewController {
-    var sideMenuTableViewDataSource: SideMenuTableViewDataSource!
+    var dataSource: SideMenuTableViewDataSource!
 
     @IBOutlet weak var sideMenuTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        sideMenuTableView.register(UINib(nibName: SideMenuTableViewCell.className, bundle: nil), forCellReuseIdentifier: SideMenuTableViewCell.className)
         sideMenuTableView.delegate = self
+
+        reloadSideMenu()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        sideMenuTableViewDataSource = SideMenuTableViewDataSource()
-        sideMenuTableView.dataSource = sideMenuTableViewDataSource
+    ///
+    /// サイドメニューを更新する
+    ///
+    func reloadSideMenu() {
+        dataSource = SideMenuTableViewDataSource()
+        sideMenuTableView.dataSource = dataSource
         sideMenuTableView.reloadData()
     }
 }
 
 extension SideMenuViewController: UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let keyword = sideMenuTableViewDataSource.data[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let keyword = dataSource.data[indexPath.section][indexPath.row]
         SideMenuService.setSelectedKeyword(keyword)
+        GnewsService().requireReloading()
 
         slideMenuController()?.closeLeft()
     }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0ACC1D21D34F7D00434686 /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E0ACC1C21D34F7D00434686 /* SideMenuTableViewCell.xib */; };
+		4E0ACC1F21D34FC400434686 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0ACC1E21D34FC400434686 /* SideMenuTableViewCell.swift */; };
 		4E39BF10214B75E10009F5EC /* MessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E39BF0F214B75E10009F5EC /* MessageView.xib */; };
 		4E3E772521BE4D0900FD81CC /* DateRangeManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E3E772421BE4D0900FD81CC /* DateRangeManagement.storyboard */; };
 		4E6BEBD92159F98600A42326 /* Config.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E6BEBD82159F98600A42326 /* Config.storyboard */; };
@@ -25,13 +27,12 @@
 		CAE7407E2ECC9350EAA6BAE2 /* DateRangeManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7428A7D40C056A263AFA2 /* DateRangeManagementViewController.swift */; };
 		CAE740FFC18A236A0A5F9659 /* MuteManagementTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE744DC8CEE87E61DC7042C /* MuteManagementTableViewDataSource.swift */; };
 		CAE741126B4F295CC2FC7054 /* DateRangeManagementTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7480B02A7D1F3395F2557 /* DateRangeManagementTableViewDataSource.swift */; };
-		CAE741FA2DA72048FB0B5FEB /* ArticleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74AB583B665BB3FA14F44 /* ArticleListViewController.swift */; };
 		CAE74230AB8455843EC0ADB6 /* ConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE744002C287A15F377597B /* ConfigService.swift */; };
 		CAE742B0FA5A948976706C10 /* SideMenuManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAE74D0253688F62A7F081A0 /* SideMenuManagement.storyboard */; };
+		CAE7438128A9BFF3D183D9E1 /* ArticleThumbsDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE740BF72F7219BED4AD113 /* ArticleThumbsDownloader.swift */; };
+		CAE74432FE9BE23E6CB5A47C /* ConfigNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74B29F2D8AEAA831AEF50 /* ConfigNavigationController.swift */; };
 		CAE744389FFCEE1B44F143D4 /* SideMenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7494139FA9CB25A524C1C /* SideMenuService.swift */; };
 		CAE744765672E7DD82892851 /* DateRangeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74DD2114635640307B3BC /* DateRangeService.swift */; };
-		CAE744C309A2591168BE38C9 /* ArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74BC35A467F883F8A1CAF /* ArticleList.swift */; };
-		CAE746394A46D365C35A6B75 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74C7D7D048164E870DE73 /* Article.swift */; };
 		CAE746F82BA7B72D4E5BD42E /* SideMenuTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74C94B1C8E662CC512D9F /* SideMenuTableViewDataSource.swift */; };
 		CAE747E03A4BE16852002277 /* SideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAE749119B3E9D1F9C5B4BEA /* SideMenu.storyboard */; };
 		CAE747FD60B9EA132972F592 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE748E39AEC2BA365A8DB3F /* BaseNavigationController.swift */; };
@@ -40,7 +41,6 @@
 		CAE748EFF77D3A8DEAA94F30 /* SideMenuManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74BFF4595CF00B903FD19 /* SideMenuManagementViewController.swift */; };
 		CAE7490FFBD628174718C7A6 /* Gnews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAE748962F6AAE9681F5626A /* Gnews.storyboard */; };
 		CAE7498788AEFC5E52580EA2 /* SideMenuManagementTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE748C9A84F8E7CB733C235 /* SideMenuManagementTableViewDataSource.swift */; };
-		CAE7499AE451618257E1E6E2 /* ApiUrlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE749A88F000A302A18F87B /* ApiUrlService.swift */; };
 		CAE749A572F4B9BC18635C07 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74AE6EF54EBFFFE2968D4 /* ConfigViewController.swift */; };
 		CAE749F81C3A4DF07BAEAC67 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74D47E940312034CC9FE3 /* ArticleService.swift */; };
 		CAE74A4450744868773A7797 /* ConfigListTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74F2470E430F93519F9B9 /* ConfigListTableViewDataSource.swift */; };
@@ -49,9 +49,10 @@
 		CAE74B8857B70EAF11F90B3D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7439D94351FD07210AEB7 /* MessageView.swift */; };
 		CAE74C0CD4866C371426861C /* ArticleListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74337F79F9D0E2F9B292E /* ArticleListTableView.swift */; };
 		CAE74CD357C472B33FE47D95 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74864842F6BA4C1CB88CA /* RoundedButton.swift */; };
-		CAE74CEA9F381863080D533C /* ArticleListTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7431E73CD8CD6A07D6FCD /* ArticleListTableViewDataSource.swift */; };
+		CAE74CDB00F6D2A21432B4FE /* CustomKeywordsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74FBCE94DF162372BE9A6 /* CustomKeywordsService.swift */; };
 		CAE74E15D3D38644D0EF30E2 /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74A7822EB09F03F42F1A3 /* NSObject.swift */; };
-		CAE74E41109B54F2F2287850 /* GnewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74D11B8A4EEB476EC36CC /* GnewsArticle.swift */; };
+		CAE74E41109B54F2F2287850 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74D11B8A4EEB476EC36CC /* Article.swift */; };
+		CAE74F8391317F3E050B17A8 /* TopicsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7416B4B24BE7CB7596829 /* TopicsService.swift */; };
 		CAE74FB172AA97A7F5F290C8 /* MuteManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE74A605E2233FC9DB4BBF3 /* MuteManagementViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E0ACC1C21D34F7D00434686 /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableViewCell.xib; sourceTree = "<group>"; };
+		4E0ACC1E21D34FC400434686 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		4E0ACC2021D35C2400434686 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		4E39BF0F214B75E10009F5EC /* MessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageView.xib; sourceTree = "<group>"; };
 		4E3E772421BE4D0900FD81CC /* DateRangeManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DateRangeManagement.storyboard; sourceTree = "<group>"; };
 		4E6BEBD82159F98600A42326 /* Config.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Config.storyboard; sourceTree = "<group>"; };
@@ -93,8 +97,9 @@
 		4EEA928E2144A92A0072A05F /* ArticleListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListTableViewCell.swift; sourceTree = "<group>"; };
 		4EEA928F2144A92A0072A05F /* ArticleListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleListTableViewCell.xib; sourceTree = "<group>"; };
 		CAE740B6930C3CE676D378AC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CAE740BF72F7219BED4AD113 /* ArticleThumbsDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleThumbsDownloader.swift; sourceTree = "<group>"; };
+		CAE7416B4B24BE7CB7596829 /* TopicsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicsService.swift; sourceTree = "<group>"; };
 		CAE7428A7D40C056A263AFA2 /* DateRangeManagementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRangeManagementViewController.swift; sourceTree = "<group>"; };
-		CAE7431E73CD8CD6A07D6FCD /* ArticleListTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleListTableViewDataSource.swift; sourceTree = "<group>"; };
 		CAE74337F79F9D0E2F9B292E /* ArticleListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleListTableView.swift; sourceTree = "<group>"; };
 		CAE7435F448F6A2CEDEA93A9 /* GnewsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GnewsService.swift; sourceTree = "<group>"; };
 		CAE7439D94351FD07210AEB7 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
@@ -109,22 +114,20 @@
 		CAE748E39AEC2BA365A8DB3F /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		CAE749119B3E9D1F9C5B4BEA /* SideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SideMenu.storyboard; sourceTree = "<group>"; };
 		CAE7494139FA9CB25A524C1C /* SideMenuService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuService.swift; sourceTree = "<group>"; };
-		CAE749A88F000A302A18F87B /* ApiUrlService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiUrlService.swift; sourceTree = "<group>"; };
 		CAE74A605E2233FC9DB4BBF3 /* MuteManagementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MuteManagementViewController.swift; sourceTree = "<group>"; };
 		CAE74A7822EB09F03F42F1A3 /* NSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
-		CAE74AB583B665BB3FA14F44 /* ArticleListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleListViewController.swift; sourceTree = "<group>"; };
 		CAE74AE6EF54EBFFFE2968D4 /* ConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
+		CAE74B29F2D8AEAA831AEF50 /* ConfigNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigNavigationController.swift; sourceTree = "<group>"; };
 		CAE74B8054F39EFC4BCC4291 /* GnewsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GnewsListViewController.swift; sourceTree = "<group>"; };
-		CAE74BC35A467F883F8A1CAF /* ArticleList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleList.swift; sourceTree = "<group>"; };
 		CAE74BFF4595CF00B903FD19 /* SideMenuManagementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuManagementViewController.swift; sourceTree = "<group>"; };
-		CAE74C7D7D048164E870DE73 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		CAE74C94B1C8E662CC512D9F /* SideMenuTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewDataSource.swift; sourceTree = "<group>"; };
 		CAE74D0253688F62A7F081A0 /* SideMenuManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SideMenuManagement.storyboard; sourceTree = "<group>"; };
-		CAE74D11B8A4EEB476EC36CC /* GnewsArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GnewsArticle.swift; sourceTree = "<group>"; };
+		CAE74D11B8A4EEB476EC36CC /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		CAE74D47E940312034CC9FE3 /* ArticleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		CAE74DD2114635640307B3BC /* DateRangeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRangeService.swift; sourceTree = "<group>"; };
 		CAE74F2470E430F93519F9B9 /* ConfigListTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigListTableViewDataSource.swift; sourceTree = "<group>"; };
 		CAE74F691E2183A9E487DB79 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		CAE74FBCE94DF162372BE9A6 /* CustomKeywordsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomKeywordsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,7 @@
 		4E9F43CA2144038B00E88EF9 /* Gone */ = {
 			isa = PBXGroup;
 			children = (
+				4E0ACC2021D35C2400434686 /* BridgingHeader.h */,
 				4E9F43CB2144038B00E88EF9 /* AppDelegate.swift */,
 				4E9F43D22144038D00E88EF9 /* Assets.xcassets */,
 				4E9F43D72144038D00E88EF9 /* Info.plist */,
@@ -238,13 +242,15 @@
 		CAE746743A20FEB1429018B6 /* service */ = {
 			isa = PBXGroup;
 			children = (
-				CAE749A88F000A302A18F87B /* ApiUrlService.swift */,
 				CAE74D47E940312034CC9FE3 /* ArticleService.swift */,
 				CAE7435F448F6A2CEDEA93A9 /* GnewsService.swift */,
 				CAE7494139FA9CB25A524C1C /* SideMenuService.swift */,
 				CAE744A48BDBF6AC32E331DC /* MuteService.swift */,
 				CAE744002C287A15F377597B /* ConfigService.swift */,
 				CAE74DD2114635640307B3BC /* DateRangeService.swift */,
+				CAE74FBCE94DF162372BE9A6 /* CustomKeywordsService.swift */,
+				CAE7416B4B24BE7CB7596829 /* TopicsService.swift */,
+				CAE740BF72F7219BED4AD113 /* ArticleThumbsDownloader.swift */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -252,8 +258,6 @@
 		CAE748BB24A9151670CDC191 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				CAE74BC35A467F883F8A1CAF /* ArticleList.swift */,
-				CAE74AB583B665BB3FA14F44 /* ArticleListViewController.swift */,
 				CAE74B8054F39EFC4BCC4291 /* GnewsListViewController.swift */,
 				CAE74693E4887FA0CDF44C7D /* SideMenuViewController.swift */,
 				CAE74BFF4595CF00B903FD19 /* SideMenuManagementViewController.swift */,
@@ -261,6 +265,7 @@
 				CAE74AE6EF54EBFFFE2968D4 /* ConfigViewController.swift */,
 				CAE74A605E2233FC9DB4BBF3 /* MuteManagementViewController.swift */,
 				CAE7428A7D40C056A263AFA2 /* DateRangeManagementViewController.swift */,
+				CAE74B29F2D8AEAA831AEF50 /* ConfigNavigationController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -268,7 +273,6 @@
 		CAE74BC4FB045F57D4525FDD /* dataSource */ = {
 			isa = PBXGroup;
 			children = (
-				CAE7431E73CD8CD6A07D6FCD /* ArticleListTableViewDataSource.swift */,
 				CAE74C94B1C8E662CC512D9F /* SideMenuTableViewDataSource.swift */,
 				CAE748C9A84F8E7CB733C235 /* SideMenuManagementTableViewDataSource.swift */,
 				CAE74F2470E430F93519F9B9 /* ConfigListTableViewDataSource.swift */,
@@ -296,6 +300,8 @@
 				4E39BF0F214B75E10009F5EC /* MessageView.xib */,
 				CAE7439D94351FD07210AEB7 /* MessageView.swift */,
 				CAE74864842F6BA4C1CB88CA /* RoundedButton.swift */,
+				4E0ACC1C21D34F7D00434686 /* SideMenuTableViewCell.xib */,
+				4E0ACC1E21D34FC400434686 /* SideMenuTableViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -303,8 +309,7 @@
 		CAE74F3DCE257E7F5E1CE8AD /* entity */ = {
 			isa = PBXGroup;
 			children = (
-				CAE74C7D7D048164E870DE73 /* Article.swift */,
-				CAE74D11B8A4EEB476EC36CC /* GnewsArticle.swift */,
+				CAE74D11B8A4EEB476EC36CC /* Article.swift */,
 			);
 			path = entity;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E39BF10214B75E10009F5EC /* MessageView.xib in Resources */,
+				4E0ACC1D21D34F7D00434686 /* SideMenuTableViewCell.xib in Resources */,
 				4EEA92912144A92A0072A05F /* ArticleListTableViewCell.xib in Resources */,
 				4E9F43D32144038D00E88EF9 /* Assets.xcassets in Resources */,
 				CAE7490FFBD628174718C7A6 /* Gnews.storyboard in Resources */,
@@ -469,16 +475,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E9F43CC2144038B00E88EF9 /* AppDelegate.swift in Sources */,
-				CAE744C309A2591168BE38C9 /* ArticleList.swift in Sources */,
-				CAE741FA2DA72048FB0B5FEB /* ArticleListViewController.swift in Sources */,
 				CAE74883FDC2B60168A7BFFA /* GnewsListViewController.swift in Sources */,
 				CAE74070E871E08B542F0714 /* SideMenuViewController.swift in Sources */,
-				CAE74CEA9F381863080D533C /* ArticleListTableViewDataSource.swift in Sources */,
 				CAE746F82BA7B72D4E5BD42E /* SideMenuTableViewDataSource.swift in Sources */,
 				4EEA92902144A92A0072A05F /* ArticleListTableViewCell.swift in Sources */,
 				CAE74E15D3D38644D0EF30E2 /* NSObject.swift in Sources */,
+				4E0ACC1F21D34FC400434686 /* SideMenuTableViewCell.swift in Sources */,
 				CAE740002CD343F5EE078D42 /* UIViewController.swift in Sources */,
-				CAE7499AE451618257E1E6E2 /* ApiUrlService.swift in Sources */,
 				CAE749F81C3A4DF07BAEAC67 /* ArticleService.swift in Sources */,
 				CAE74B1183A98C69A6C577F2 /* GnewsService.swift in Sources */,
 				CAE744389FFCEE1B44F143D4 /* SideMenuService.swift in Sources */,
@@ -487,8 +490,7 @@
 				CAE7498788AEFC5E52580EA2 /* SideMenuManagementTableViewDataSource.swift in Sources */,
 				CAE747FD60B9EA132972F592 /* BaseNavigationController.swift in Sources */,
 				CAE74B8857B70EAF11F90B3D /* MessageView.swift in Sources */,
-				CAE746394A46D365C35A6B75 /* Article.swift in Sources */,
-				CAE74E41109B54F2F2287850 /* GnewsArticle.swift in Sources */,
+				CAE74E41109B54F2F2287850 /* Article.swift in Sources */,
 				CAE74B3C5F878A360262C4A2 /* MuteService.swift in Sources */,
 				CAE749A572F4B9BC18635C07 /* ConfigViewController.swift in Sources */,
 				CAE74A4450744868773A7797 /* ConfigListTableViewDataSource.swift in Sources */,
@@ -499,6 +501,10 @@
 				CAE7407E2ECC9350EAA6BAE2 /* DateRangeManagementViewController.swift in Sources */,
 				CAE744765672E7DD82892851 /* DateRangeService.swift in Sources */,
 				CAE741126B4F295CC2FC7054 /* DateRangeManagementTableViewDataSource.swift in Sources */,
+				CAE74CDB00F6D2A21432B4FE /* CustomKeywordsService.swift in Sources */,
+				CAE74F8391317F3E050B17A8 /* TopicsService.swift in Sources */,
+				CAE74432FE9BE23E6CB5A47C /* ConfigNavigationController.swift in Sources */,
+				CAE7438128A9BFF3D183D9E1 /* ArticleThumbsDownloader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,8 +669,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.halawata.Gone;
+				PRODUCT_BUNDLE_IDENTIFIER = net.halawata.gone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PRODUCT)/Gone/BridgingHeader.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -685,8 +692,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.halawata.Gone;
+				PRODUCT_BUNDLE_IDENTIFIER = net.halawata.gone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PRODUCT)/Gone/BridgingHeader.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
